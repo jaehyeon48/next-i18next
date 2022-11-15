@@ -77,7 +77,7 @@ describe('createConfig', () => {
             hello: 'world',
           },
           lng: 'en',
-        } as UserConfig)
+        } as unknown as UserConfig)
         expect((config.backend as any).hello).toBe('world')
         expect((config.backend as any).loadPath).toEqual(path.join(process.cwd(),'/public/locales/{{lng}}/{{ns}}.json'))
       })
@@ -402,7 +402,7 @@ describe('createConfig', () => {
           hello: 'world',
         },
         lng: 'en',
-      } as UserConfig)
+      } as unknown as UserConfig)
       expect((config.backend as any).hello).toBe('world')
       expect((config.backend as any).loadPath).toMatch('/locales/{{lng}}/{{ns}}.json')
     })
@@ -431,7 +431,8 @@ describe('createConfig', () => {
           lng: 'en',
           use: [{
             type: 'backend',
-          }] } as UserConfig)
+          }],
+        } as unknown as UserConfig)
         expect((config.backend as any)).toEqual({ hello: 'world' })
       })
     })
