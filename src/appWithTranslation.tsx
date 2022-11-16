@@ -11,11 +11,13 @@ import { SSRConfig, UserConfig } from './types'
 import { i18n as I18NextClient } from 'i18next'
 export { Trans, useTranslation, withTranslation } from 'react-i18next'
 
+import nextI18nextConfig from '../next-i18next.config'
+
 export let globalI18n: I18NextClient | null = null
 
 export const appWithTranslation = <Props extends NextJsAppProps>(
   WrappedComponent: React.ComponentType<Props>,
-  configOverride: UserConfig | null = null,
+  configOverride: UserConfig = nextI18nextConfig
 ) => {
   const AppWithTranslation = (props: Props & { pageProps: Props['pageProps'] & SSRConfig }) => {
     const { _nextI18Next } = props.pageProps
